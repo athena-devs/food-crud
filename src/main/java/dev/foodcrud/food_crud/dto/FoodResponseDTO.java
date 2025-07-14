@@ -1,23 +1,27 @@
 package dev.foodcrud.food_crud.dto;
+
 import java.math.BigDecimal;
-import org.springframework.format.annotation.DateTimeFormat;
+import java.time.LocalDate;
+import java.util.UUID;
 
 import dev.foodcrud.food_crud.model.Food;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.Setter;
 
-@AllArgsConstructor(access = AccessLevel.PUBLIC)
 @Getter
+@Setter
 public class FoodResponseDTO {
-    private Long id;
-    private String name;
-    private DateTimeFormat expirationDate;
-    private Integer quantity;
-    private BigDecimal price;
+  private UUID id;
+  private String name;
+  private LocalDate expirationDate;
+  private Integer quantity;
+  private BigDecimal price;
 
-    public static FoodResponseDTO transformToDTO(Food food) {
-      return new FoodResponseDTO(food.getId(), food.getName(), food.getExpirationDate(), food.getQuantity(), food.getPrice());
-    }
-
+  public FoodResponseDTO(Food food) {
+    this.id = food.getId();
+    this.name = food.getName();
+    this.expirationDate = food.getExpirationDate();
+    this.quantity = food.getQuantity();
+    this.price = food.getPrice();
+  }
 }
